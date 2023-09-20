@@ -14,6 +14,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
             y=yi;
         }
     }
+    ImageIcon ic,ic1;
     Timer timer;
     Tile apple;
 
@@ -26,6 +27,9 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
     boolean gameover;
     Random random;
     public MyPanel(){
+        ic=new ImageIcon("apple1.png");
+        ic1=new ImageIcon("snakehead.png");
+
         this.setBackground(Color.BLACK);
         this.setPreferredSize(new Dimension(600,600));
         this.addKeyListener(this);
@@ -61,8 +65,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
             g.drawString("Score : "+apples_eaten,250,50);
             //draws the apple
             g.setColor(Color.red);
-            g.fillOval(apple.x*25,apple.y*25,25,25);
-
+            g.drawImage(ic.getImage(),apple.x*25,apple.y*25,25,25,null);
             //draws the snake head
             g.setColor(Color.BLUE);
             g.fill3DRect(head.x*25,head.y*25,25,25,true);
