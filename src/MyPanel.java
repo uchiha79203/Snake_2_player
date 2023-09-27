@@ -105,14 +105,17 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
         }
     }
     public boolean CheckIfOwnBody(){
-        //check if own body
         for(int i = 1; i< Snake_body1.size(); i++){
             if(Snake_body1.get(i).x==head1.x && Snake_body1.get(i).y==head1.y){
+                player1_wins=false;
+                gameover=true;
                 return true;
             }
         }
         for(int i = 1; i< Snake_body2.size(); i++){
             if(Snake_body2.get(i).x==head2.x && Snake_body2.get(i).y==head2.y){
+                player1_wins=true;
+                gameover=true;
                 return true;
             }
         }
@@ -137,8 +140,10 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
     }
 
     public void move(){
+        CheckIfOwnBody();
+
         //check for own body collision
-        if(CheckIfOwnBody() || CheckCollissionBetweenSnakes()){
+        if(CheckCollissionBetweenSnakes()){
             if(apples_eaten1>apples_eaten2){
                 player1_wins=true;
             }
@@ -147,6 +152,7 @@ public class MyPanel extends JPanel implements ActionListener, KeyListener {
             }
             gameover=true;
         }
+
         //check if wall
         if(head1.x*25>=600 || head1.y*25>=600 || head1.x*25<0 || head1.y*25<0){
             player1_wins=false;
